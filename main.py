@@ -15,12 +15,8 @@ while(i!=28):
     answer=screen.textinput(f"Guess the state {i}/28","What's another state name? ").title()
     
     if (answer=="Exit"):
-        missing_states=[]
-        for state in data["state"].to_list():
-            if state not in guessed_list:
-                missing_states.append(state)
-        pd.DataFrame(missing_states).to_csv("states_to_learn.csv")
-        
+        missing_states=[state for state in data["state"].to_list() if state not in guessed_list]
+        pd.DataFrame(missing_states).to_csv("states_to_learn.csv") 
         break
     
     state_list=data["state"].to_list()
